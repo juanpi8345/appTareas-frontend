@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-6 offset-md-3">
+      <mat-card class="mt-5">
+        <h1 class="fs-2 m-0 p-3 titulo">Guarda y administra tus tareas!</h1> 
+      </mat-card>
+    </div>
+  </div>
+  <div class="centrado">
+    <mat-card class="ps-3 pe-3 pt-3 pb-1">
+      <div class="row">
+        <div class="col text-center">
+          <img src="../../../assets/img/login.png" width="100px">
+          <h1 class="mt-2 fs-3">Autenticarse</h1>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col">
+          <form *ngIf="login" class="aparecer">
+            <mat-form-field class="w-100">
+              <mat-label>Nombre de usuario</mat-label>
+              <input matInput required name="username" [(ngModel)]="usuario.username">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Clave</mat-label>
+              <input matInput type="password" required name="password" [(ngModel)]="usuario.password">
+            </mat-form-field>
+          </form>
+          <form *ngIf="!login" class="aparecer">
+            <mat-form-field class="w-100">
+              <mat-label>Nombre</mat-label>
+              <input matInput required name="nombre" [(ngModel)]="usuario.nombre">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Apellido</mat-label>
+              <input matInput required name="apellido" [(ngModel)]="usuario.apellido">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Nombre de usuario</mat-label>
+              <input matInput required name="username"  [(ngModel)]="usuario.username">
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>Clave</mat-label>
+              <input matInput type="password" required name="password" [(ngModel)]="usuario.password">
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-success me-2" *ngIf="login" (click)="iniciarSesion()">Iniciar sesion</button>
+          <button class="btn btn-success me-2" *ngIf="!login" (click)="registrarse()">Registrarse</button>
+          <button class="btn btn-secondary ms-2" (click)="limpiarCampos()">Limpiar campos</button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col text-center">
+          <p *ngIf="login" >No tiene una cuenta? <b (click)="login = !login">Registrese aqui</b></p>
+          <p *ngIf="!login" >Ya tiene una cuenta? <b (click)="login = !login">Inicie sesion aqui</b></p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
