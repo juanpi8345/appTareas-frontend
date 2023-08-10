@@ -1,0 +1,17 @@
+h1{
+    color: #157347;
+}
+
+p{
+    font-style: italic;
+}
+
+mat-card{
+    transition: .7s ease all;
+    cursor: pointer;
+}
+
+mat-card:hover{
+    transform: scale(1.05);
+    background-color: #eaf4b4!important;
+}

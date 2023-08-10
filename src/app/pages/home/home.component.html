@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container aparecer">
     <div class="row text-center">
         <div class="col-md-6 offset-md-3">
             <mat-card class="mt-3">
@@ -7,19 +7,24 @@
         </div>
     </div>
     <div class="row text-center mt-5">
-        <mat-card class="p-2">
-            <div class="row">
-                <div class="col-md-4">
-                    <button class="btn">Pendientes</button>
+        <div class="col-md-12">
+            <mat-card class="p-2">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn" routerLink="pendientes" style="background-color: #eaf4b4;">Pendientes</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn" style="background-color: #b4f6ad;">Completadas</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn" style="background-color: #f4b4b4;">Caducadas</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn" routerLink="add"><mat-icon class="mat-18">add</mat-icon></button>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <button class="btn">Completadas</button>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn">Caducadas</button>
-                </div>
-            </div>
-        </mat-card>
-
+            </mat-card>
+        </div>
     </div>
 </div>
+<router-outlet></router-outlet>

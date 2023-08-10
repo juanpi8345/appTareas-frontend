@@ -10,7 +10,7 @@ export class UsuarioService {
 
   constructor(private http:HttpClient) { }
 
-  private url : string = "http://localhost:8080/";
+  private url : string = "http://localhost:8080/usuario/";
 
   public registrarUsuario(usuario:Usuario){
     return this.http.post(this.url,usuario);

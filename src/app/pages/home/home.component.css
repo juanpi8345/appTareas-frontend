@@ -4,10 +4,6 @@ h1{
 
 .btn{
     background-color: #daeed0;
-    border: 1px solid #157347;
-    transition: background .3s ease;
-}
-
-.btn:hover{
-    background-color: #c5f0b0;
+    border: 1px solid #000;
+    transition: all .5s ease;
 }
