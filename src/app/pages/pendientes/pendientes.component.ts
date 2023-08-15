@@ -15,6 +15,7 @@ export class PendientesComponent {
   tareas:any;
 
   numeros : number[] = [1,2,3,4,5,6,7,8,9,10];
+  numeroActual : number = 1;
 
   ngOnInit():void{
     //Aca va el usuario autenticado
@@ -28,9 +29,16 @@ export class PendientesComponent {
   obtenerTareasPendientes(page:number){
     this.tareaService.obtenerTareasPendientes(page-1,2).subscribe((tarea:any)=>{
       this.tareas = tarea.content;
+      this.numeroActual = page;
       this.validarTareas();
     })
-    
+  }
+
+  obtenerTareasPendientesSegunOpcion(orderBy:string){
+   this.tareaService.obtenerTareasPendientesSegunOpcion(2,orderBy).subscribe((tareas:any)=>{
+    this.tareas = tareas.content;
+    this.validarTareas();
+   })
   }
 
   validarTareas(){
@@ -71,6 +79,24 @@ export class PendientesComponent {
     }).then(resultado=>{
       if(resultado.isConfirmed){
         this.tareaService.eliminarTarea(tarea.tareaId).subscribe();
+        location.reload();
+      }
+    })
+  }
+
+  completarTodas(){
+    Swal.fire({
+      title:"Completar tareas",
+      text:"¿Estas seguro de que queres marcar todas las tareas pendientes como completadas?",
+      showCancelButton:true,
+      icon:'warning',
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor:'#d33',
+      confirmButtonText:'Aceptar',
+      cancelButtonText:'Cancelar'
+    }).then(resultado=>{
+      if(resultado.isConfirmed){
+        this.tareaService.marcarTodasCompletadas(2).subscribe();
         location.reload();
       }
     })

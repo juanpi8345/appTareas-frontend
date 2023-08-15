@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AddTareaComponent } from './pages/add-tarea/add-tarea.component';
 import { PendientesComponent } from './pages/pendientes/pendientes.component';
 import { CompletadasComponent } from './pages/completadas/completadas.component';
+import { CaducadasComponent } from './pages/caducadas/caducadas.component';
 
 const routes: Routes = [
   {path:'*',redirectTo:'autenticarse'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent,children:[
     {path:'add',component:AddTareaComponent},
     {path:'pendientes',component:PendientesComponent},
-    {path:'completadas',component:CompletadasComponent}
+    {path:'completadas',component:CompletadasComponent},
+    {path:'caducadas',component:CaducadasComponent}
   ]}
   
 ];

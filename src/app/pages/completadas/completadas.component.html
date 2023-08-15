@@ -1,4 +1,19 @@
 <div class="container aparecer mt-5">
+    <div class="row justify-content-between">
+        <div class="col-md-6">
+            <mat-form-field>
+                <mat-label>Ordenar por</mat-label>
+                <mat-select value="fechaCaducidad">
+                    <mat-option value="fechaCaducidad" (click)="obtenerTareasCompletadasSegunOpcion('fechaCaducidad')">fechaCaducidad</mat-option>
+                    <mat-option value="titulo" (click)="obtenerTareasCompletadasSegunOpcion('titulo')">titulo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6 text-end">
+            <button class="btn btn-success me-3" (click)="vaciar()">Vaciar</button>
+            <b>{{numeroActual}}</b>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <mat-card class="p-1 mb-4 aparecer" *ngFor="let tarea of tareas">
@@ -9,7 +24,7 @@
                         <h6 class="text-start">{{tarea.fechaCaducidad}}</h6>
                     </div>
                     <div class="col-md-6 align-self-center text-end pe-4">
-                        <mat-icon class="mat-18" class="delete ms-4" >delete</mat-icon>
+                        <mat-icon class="mat-18" class="delete ms-4" (click)="eliminarTarea(tarea)">delete</mat-icon>
                     </div>
                 </div>
             </mat-card>

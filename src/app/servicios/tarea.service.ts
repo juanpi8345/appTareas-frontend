@@ -23,12 +23,41 @@ export class TareaService {
     return this.http.get(this.url+ "usuario/" +usuarioId + "?page="+page);
   }
 
+  public obtenerTareasPendientesSegunOpcion(usuarioId:number,orderBy:string){
+    return this.http.get(this.url+ "usuario/" +usuarioId + "?orderBy="+orderBy);
+  }
+
   public obtenerTareasCompletadas(page:number,usuarioId:number){
     return this.http.get(this.url+ "completadas/usuario/" +usuarioId + "?page="+page);
   }
 
+  public obtenerTareasCompletadasSegunOpcion(usuarioId:number,orderBy:string){
+    return this.http.get(this.url+ "completadas/usuario/" +usuarioId + "?orderBy="+orderBy);
+  }
+
+  public obtenerTareasCaducadas(page:number,usuarioId:number){
+    return this.http.get(this.url+ "caducadas/usuario/" +usuarioId + "?page="+page);
+  }
+
+  public obtenerTareasCaducadasSegunOpcion(usuarioId:number,orderBy:string){
+    return this.http.get(this.url+ "caducadas/usuario/" +usuarioId + "?orderBy="+orderBy);
+  }
+
+
   public eliminarTarea(tareaId:number){
     return this.http.delete(this.url+"tarea/"+tareaId);
+  }
+
+  public eliminarTareasCompletadas(usuarioId:number){
+    return this.http.delete(this.url + "usuario/"+usuarioId);
+  }
+
+  public eliminarTareasCaducadas(usuarioId:number){
+    return this.http.delete(this.url + "caducadas/usuario/"+usuarioId);
+  }
+
+  public marcarTodasCompletadas(usuarioId:number){
+    return this.http.put(this.url + "usuario/"+usuarioId+"/completar",null)
   }
 
 }

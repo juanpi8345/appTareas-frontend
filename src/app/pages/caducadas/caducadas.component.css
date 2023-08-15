@@ -1,24 +1,15 @@
-h1{
-    color: #157347;
-}
-
 mat-card{
     transition: .7s ease all;
-    background-color: #eaf4b4!important;
+    background-color: #f4b4b4!important;
 }
 
 mat-card:hover{
     transform: scale(1.02);
 }
 
-.check, .delete{
+.delete{
     transition: .4s ease color;
     cursor: pointer;
-}
-
-
-.check:hover{
-    color: #157347;
 }
 
 .delete:hover{

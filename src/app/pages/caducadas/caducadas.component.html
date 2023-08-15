@@ -4,13 +4,13 @@
             <mat-form-field>
                 <mat-label>Ordenar por</mat-label>
                 <mat-select value="fechaCaducidad">
-                    <mat-option value="fechaCaducidad" (click)="obtenerTareasPendientesSegunOpcion('fechaCaducidad')">fechaCaducidad</mat-option>
-                    <mat-option value="titulo" (click)="obtenerTareasPendientesSegunOpcion('titulo')">titulo</mat-option>
+                    <mat-option value="fechaCaducidad" (click)="obtenerTareasCaducadasSegunOpcion('fechaCaducidad')">fechaCaducidad</mat-option>
+                    <mat-option value="titulo" (click)="obtenerTareasCaducadasSegunOpcion('titulo')">titulo</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="col-md-6 text-end">
-            <button class="btn btn-success me-3" (click)="completarTodas()">Completar todas</button>
+            <button class="btn btn-danger me-3" (click)="vaciar()">Vaciar</button>
             <b>{{numeroActual}}</b>
         </div>
     </div>
@@ -21,11 +21,10 @@
                     <div class="col-md-6 ps-4">
                         <h1 class="fs-4">{{tarea.titulo}}</h1>
                         <p class="fs-6">{{tarea.descripcion}}</p>
-                        <h6 class="text-start">Fecha limite: {{tarea.fechaCaducidad}}</h6>
+                        <h6 class="text-start">{{tarea.fechaCaducidad}}</h6>
                     </div>
                     <div class="col-md-6 align-self-center text-end pe-4">
-                        <mat-icon class="mat-18" class="check" (click)="marcarCompletada(tarea)">check</mat-icon>
-                        <mat-icon class="mat-18" class="delete ms-4" (click)="eliminarTarea(tarea)">delete</mat-icon>
+                        <mat-icon class="mat-18" class="delete ms-4" (click)="eliminarTarea(tarea)" >delete</mat-icon>
                     </div>
                 </div>
             </mat-card>
@@ -35,7 +34,7 @@
         <div class="col-md-12 text-center">
             <div class="btn-group me-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-outline-success" *ngFor="let numero of numeros"
-                    (click)="obtenerTareasPendientes(numero)">{{numero}}</button>
+                    (click)="obtenerTareasCaducadas(numero)">{{numero}}</button>
             </div>
         </div>
     </div>

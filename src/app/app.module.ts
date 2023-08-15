@@ -12,6 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,6 +21,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AddTareaComponent } from './pages/add-tarea/add-tarea.component';
 import { PendientesComponent } from './pages/pendientes/pendientes.component';
 import { CompletadasComponent } from './pages/completadas/completadas.component';
+import { CaducadasComponent } from './pages/caducadas/caducadas.component';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { CompletadasComponent } from './pages/completadas/completadas.component'
     AddTareaComponent,
     PendientesComponent,
     CompletadasComponent,
+    CaducadasComponent,
 
   ],
   imports: [
@@ -43,6 +46,7 @@ import { CompletadasComponent } from './pages/completadas/completadas.component'
     MatSnackBarModule,
     MatIconModule,
     MatDividerModule,
+    MatSelectModule,
     BrowserAnimationsModule
   ],
   providers: [],
