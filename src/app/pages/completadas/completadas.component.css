@@ -1,17 +1,9 @@
-h1{
-    color: #157347;
-}
-
-p{
-    font-style: italic;
-}
-
-mat-card{
+mat-card {
     transition: .7s ease all;
-    background-color: #eaf4b4!important;
+    background-color: #b4f6ad !important;
 }
 
-mat-card:hover{
+mat-card:hover {
     transform: scale(1.02);
 }
 

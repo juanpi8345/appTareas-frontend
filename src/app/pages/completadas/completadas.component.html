@@ -9,8 +9,7 @@
                         <h6 class="text-start">{{tarea.fechaCaducidad}}</h6>
                     </div>
                     <div class="col-md-6 align-self-center text-end pe-4">
-                        <mat-icon class="mat-18" class="check" (click)="marcarCompletada(tarea)">check</mat-icon>
-                        <mat-icon class="mat-18" class="delete ms-4" (click)="eliminarTarea(tarea)" >delete</mat-icon>
+                        <mat-icon class="mat-18" class="delete ms-4" >delete</mat-icon>
                     </div>
                 </div>
             </mat-card>
@@ -20,7 +19,7 @@
         <div class="col-md-12 text-center">
             <div class="btn-group me-2" role="group" aria-label="First group">
                 <button type="button" class="btn btn-outline-success" *ngFor="let numero of numeros"
-                    (click)="obtenerTareasPendientes(numero)">{{numero}}</button>
+                    (click)="obtenerTareasCompletadas(numero)">{{numero}}</button>
             </div>
         </div>
     </div>

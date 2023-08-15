@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { AddTareaComponent } from './pages/add-tarea/add-tarea.component';
 import { PendientesComponent } from './pages/pendientes/pendientes.component';
+import { CompletadasComponent } from './pages/completadas/completadas.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { PendientesComponent } from './pages/pendientes/pendientes.component';
     HomeComponent,
     AddTareaComponent,
     PendientesComponent,
+    CompletadasComponent,
 
   ],
   imports: [

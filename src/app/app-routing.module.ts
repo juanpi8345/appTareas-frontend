@@ -4,13 +4,15 @@ import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciar-sesion.co
 import { HomeComponent } from './pages/home/home.component';
 import { AddTareaComponent } from './pages/add-tarea/add-tarea.component';
 import { PendientesComponent } from './pages/pendientes/pendientes.component';
+import { CompletadasComponent } from './pages/completadas/completadas.component';
 
 const routes: Routes = [
   {path:'*',redirectTo:'autenticarse'},
   {path:'autenticarse',component:IniciarSesionComponent},
   {path:'home',component:HomeComponent,children:[
     {path:'add',component:AddTareaComponent},
-    {path:'pendientes',component:PendientesComponent}
+    {path:'pendientes',component:PendientesComponent},
+    {path:'completadas',component:CompletadasComponent}
   ]}
   
 ];
