@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tarea } from 'src/app/modelos/tarea';
+import { Usuario } from 'src/app/modelos/usuario';
+import { LoginService } from 'src/app/servicios/login.service';
 import { TareaService } from 'src/app/servicios/tarea.service';
 import Swal from 'sweetalert2';
 
@@ -11,23 +13,30 @@ import Swal from 'sweetalert2';
 })
 export class PendientesComponent {
 
-  constructor(private tareaService:TareaService, private router:Router){}
+  constructor(private tareaService:TareaService, private router:Router, private loginService:LoginService){}
   tareas:any;
+
+  currentUser:Usuario; 
 
   numeros : number[] = [1,2,3,4,5,6,7,8,9,10];
   numeroActual : number = 1;
 
   ngOnInit():void{
-    //Aca va el usuario autenticado
-    this.tareaService.obtenerTareasPendientes(0,2).subscribe((tarea:any)=>{
-      this.tareas = tarea.content;
-      this.validarTareas();
+
+    this.loginService.getCurrentUser().subscribe((usuario:Usuario)=>{
+      this.currentUser = usuario;
+      this.tareaService.obtenerTareasPendientes(0,this.currentUser.usuarioId).subscribe((tarea:any)=>{
+        this.tareas = tarea.content;
+        this.validarTareas();
+      })
+    },err=>{
+      this.loginService.logOut();
+      this.router.navigate(['autenticarse']);
     });
-    
   }
 
   obtenerTareasPendientes(page:number){
-    this.tareaService.obtenerTareasPendientes(page-1,2).subscribe((tarea:any)=>{
+    this.tareaService.obtenerTareasPendientes(page-1,this.currentUser.usuarioId).subscribe((tarea:any)=>{
       this.tareas = tarea.content;
       this.numeroActual = page;
       this.validarTareas();
@@ -35,7 +44,7 @@ export class PendientesComponent {
   }
 
   obtenerTareasPendientesSegunOpcion(orderBy:string){
-   this.tareaService.obtenerTareasPendientesSegunOpcion(2,orderBy).subscribe((tareas:any)=>{
+   this.tareaService.obtenerTareasPendientesSegunOpcion(this.currentUser.usuarioId,orderBy).subscribe((tareas:any)=>{
     this.tareas = tareas.content;
     this.validarTareas();
    })
@@ -96,7 +105,7 @@ export class PendientesComponent {
       cancelButtonText:'Cancelar'
     }).then(resultado=>{
       if(resultado.isConfirmed){
-        this.tareaService.marcarTodasCompletadas(2).subscribe();
+        this.tareaService.marcarTodasCompletadas(this.currentUser.usuarioId).subscribe();
         location.reload();
       }
     })

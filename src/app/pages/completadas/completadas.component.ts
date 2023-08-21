@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Tarea } from 'src/app/modelos/tarea';
+import { Usuario } from 'src/app/modelos/usuario';
+import { LoginService } from 'src/app/servicios/login.service';
 import { TareaService } from 'src/app/servicios/tarea.service';
 import Swal from 'sweetalert2';
 
@@ -10,17 +13,23 @@ import Swal from 'sweetalert2';
 })
 export class CompletadasComponent {
 
-  constructor(private tareaService:TareaService){}
+  constructor(private tareaService:TareaService, private loginService:LoginService, private router:Router){}
 
   tareas:any;
-
+  currentUser:Usuario;
   numeros : number[] = [1,2,3,4,5,6,7,8,9,10];
   numeroActual:number = 1;
 
   ngOnInit():void{
-    this.tareaService.obtenerTareasCompletadas(0,2).subscribe((tareas:any)=>{
-      this.tareas = tareas.content;
-      this.validarTareas();
+    this.loginService.getCurrentUser().subscribe((usuario:Usuario)=>{
+      this.currentUser = usuario;
+      this.tareaService.obtenerTareasCompletadas(0,this.currentUser.usuarioId).subscribe((tareas:any)=>{
+        this.tareas = tareas.content;
+        this.validarTareas();
+      })
+    },err=>{
+      this.loginService.logOut();
+      this.router.navigate(['autenticarse']);
     })
   }
 
@@ -31,7 +40,7 @@ export class CompletadasComponent {
   }
 
   obtenerTareasCompletadas(page:number){
-    this.tareaService.obtenerTareasCompletadas(page-1,2).subscribe((tarea:any)=>{
+    this.tareaService.obtenerTareasCompletadas(page-1,this.currentUser.usuarioId).subscribe((tarea:any)=>{
       this.tareas = tarea.content;
       this.numeroActual = page;
       this.validarTareas();
@@ -39,7 +48,7 @@ export class CompletadasComponent {
   }
 
   obtenerTareasCompletadasSegunOpcion(orderBy:string){
-    this.tareaService.obtenerTareasCompletadasSegunOpcion(2,orderBy).subscribe((tareas:any)=>{
+    this.tareaService.obtenerTareasCompletadasSegunOpcion(this.currentUser.usuarioId,orderBy).subscribe((tareas:any)=>{
      this.tareas = tareas.content;
      this.validarTareas();
     })
@@ -75,7 +84,7 @@ export class CompletadasComponent {
       cancelButtonText:'Cancelar'
     }).then(resultado=>{
       if(resultado.isConfirmed){
-        this.tareaService.eliminarTareasCompletadas(2).subscribe();
+        this.tareaService.eliminarTareasCompletadas(this.currentUser.usuarioId).subscribe();
         location.reload();
       }
     })

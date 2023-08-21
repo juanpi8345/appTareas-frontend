@@ -10,12 +10,12 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  private url : string = "http://localhost:8080/";
+  private url : string = "http://localhost:8080/auth/";
 
   public loginStatusSubject = new Subject<any>();
 
   public generarToken(usuario:Usuario){
-    return this.http.post(this.url + "generate-token",usuario);
+    return this.http.post(this.url + "login",usuario);
   }
 
   public loginUser(token:string){

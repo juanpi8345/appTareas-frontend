@@ -2,8 +2,10 @@ h1{
     color: #157347;
 }
 
-.btn{
-    background-color: #daeed0;
-    border: 1px solid #000;
-    transition: all .5s ease;
+.hover:hover{
+    background-color: #d2f3c0!important;
+}
+
+img{
+    cursor: pointer;
 }

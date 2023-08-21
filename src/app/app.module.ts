@@ -16,12 +16,13 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-//import { authInterceptorProviders } from './servicios/interceptor.interceptor';
+import { authInterceptorProviders } from './servicios/interceptor.interceptor';
 import { HomeComponent } from './pages/home/home.component';
 import { AddTareaComponent } from './pages/add-tarea/add-tarea.component';
 import { PendientesComponent } from './pages/pendientes/pendientes.component';
 import { CompletadasComponent } from './pages/completadas/completadas.component';
 import { CaducadasComponent } from './pages/caducadas/caducadas.component';
+import { AuthGuard } from './servicios/auth.guard';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CaducadasComponent } from './pages/caducadas/caducadas.component';
     MatSelectModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders,
+              AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

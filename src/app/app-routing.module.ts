@@ -6,11 +6,12 @@ import { AddTareaComponent } from './pages/add-tarea/add-tarea.component';
 import { PendientesComponent } from './pages/pendientes/pendientes.component';
 import { CompletadasComponent } from './pages/completadas/completadas.component';
 import { CaducadasComponent } from './pages/caducadas/caducadas.component';
+import { AuthGuard } from './servicios/auth.guard';
 
 const routes: Routes = [
-  {path:'*',redirectTo:'autenticarse'},
+  {path:'',redirectTo:'home/pendientes', pathMatch:'full'},
   {path:'autenticarse',component:IniciarSesionComponent},
-  {path:'home',component:HomeComponent,children:[
+  {path:'home',component:HomeComponent, canActivate:[AuthGuard],children:[
     {path:'add',component:AddTareaComponent},
     {path:'pendientes',component:PendientesComponent},
     {path:'completadas',component:CompletadasComponent},

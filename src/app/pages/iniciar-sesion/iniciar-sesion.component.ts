@@ -49,15 +49,20 @@ export class IniciarSesionComponent {
   }
 
   iniciarSesion(){
-    // this.loginService.generarToken(this.usuario).subscribe((token:any)=>{
-    //   this.loginService.loginUser(token.token);
-    //   this.loginService.getCurrentUser().subscribe((user:Usuario)=>{
-    //     this.loginService.setUser(user);
-    //     this.loginService.loginStatusSubject.next(true);
-    //     
-    //   })
-   // })
-   this.router.navigate(['/home']);
+    this.loginService.generarToken(this.usuario).subscribe((token:any)=>{
+      this.loginService.loginUser(token.token);
+      this.loginService.getCurrentUser().subscribe((user:Usuario)=>{
+        this.loginService.setUser(user);
+        this.loginService.loginStatusSubject.next(true);
+        this.router.navigate(['/home']);
+        return;
+      })
+   },err=>{
+    this.snack.open("Credenciales incorrectas","Aceptar",{
+      duration:3000
+    })
+   })
+   
   }
 
 
